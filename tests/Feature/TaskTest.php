@@ -31,6 +31,17 @@ class TaskTest extends TestCase
         $response->assertJsonStructure(['data' => ['id', 'nome', 'descricao'], 'message']);
     }
 
+    /**
+     * testar se ao  submeter um POST em /api/tarefas, SEM um array com nome e descricao de uma tarefa,
+     * o servido retorna um erro
+     */
+    public function test_error_when_creating_task_without_name_and_description()
+    {
+        $response = $this->json('POST', 'api/tarefas');
+        $response->assertStatus(422);
+        $response->assertJsonStructure(['errors' => ['nome', 'descricao'], 'message']);
+    }
+
 
 
 }
