@@ -19,3 +19,6 @@ use Illuminate\Http\Request;
 // });
 
 Route::resource('tarefas', 'API\TaskController');
+Route::post('users', 'API\UserController@store');
+
+Route::post('login', 'API\AuthController@login');
